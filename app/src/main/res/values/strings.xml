@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FRPOC</string>
+<!--    <string name="my_model">face_model.tflite</string>-->
+    <string name="my_model_512">facenet_512.tflite</string>
+    <string name="my_model">mobile_face_net.tflite</string>
+    <string name="mobilenet">mobilenet.tflite</string>
+    <string name="facenet">facenet.tflite</string>
+</resources>

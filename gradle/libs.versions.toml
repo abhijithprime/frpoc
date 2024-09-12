@@ -1,0 +1,100 @@
+[versions]
+activityComposeVersion = "1.9.2"
+agp = "8.5.2"
+cameraCamera2 = "1.3.4"
+cameraCore = "1.3.4"
+cameraCoreVersion = "1.3.4"
+cameraLifecycle = "1.2.0"
+cameraView = "1.2.0"
+constraintlayoutCompose = "1.0.1"
+googleFaceDetection = "16.1.7"
+googleFaceDetectionVersion = "0.10.3"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+kotlinxCoroutinesPlayServices = "1.8.1"
+lifecycleRuntimeKtx = "2.8.5"
+activityCompose = "1.9.2"
+composeBom = "2024.09.00"
+material = "1.7.0"
+mediapipe = "0.10.1"
+navigationCompose = "2.8.0"
+roomCompiler = "2.5.2"
+roomRuntime = "2.5.2"
+solutionCore = "0.10.14"
+solutionsFacemesh = "0.8.10"
+tasksVision = "0.2.1"
+tensorflowLite = "2.7.0"
+tensorflowLiteDelegatesNnapi = "0.4.1"
+tensorflowLiteGpu = "2.16.1"
+tensorflowLiteMetadata = "0.4.4"
+tensorflowLiteSupportVersion = "0.4.0"
+tensorflowLiteTaskVision = "0.4.4"
+tensorflowLiteVersion = "2.10.0"
+tensorflowTensorflowLite = "2.16.1"
+tensorflowTensorflowLiteSupport = "2.10.0"
+tensorflowTensorflowLiteSupportVersion = "0.4.4"
+ui = "1.7.0"
+uiToolingPreview = "1.7.0"
+navigationRuntimeKtx = "2.8.0"
+visionCommon = "17.3.0"
+
+[libraries]
+#noinspection SimilarGradleDependency
+androidx-activity-compose-v150 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCore" }
+androidx-camera-camera2-v120 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCamera2" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
+androidx-camera-core-v120 = { module = "androidx.camera:camera-core", version.ref = "cameraCoreVersion" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCore" }
+androidx-camera-lifecycle-v120 = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraLifecycle" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCore" }
+androidx-camera-view-v120 = { module = "androidx.camera:camera-view", version.ref = "cameraView" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material = { module = "androidx.compose.material:material", version.ref = "material" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomCompiler" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+face-detection = { module = "com.google.mlkit:face-detection", version.ref = "googleFaceDetection" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+#noinspection SimilarGradleDependency
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
+mediapipe = { module = "com.google.mediapipe:mediapipe", version.ref = "mediapipe" }
+mediapipe-face-detection = { module = "com.google.mediapipe:face-detection", version.ref = "googleFaceDetectionVersion" }
+solution-core = { module = "com.google.mediapipe:solution-core", version.ref = "solutionCore" }
+solutions-facemesh = { module = "com.google.mediapipe:solutions-facemesh", version.ref = "solutionsFacemesh" }
+tasks-vision = { module = "com.google.mediapipe.tasks:tasks-vision", version.ref = "tasksVision" }
+tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLite" }
+tensorflow-lite-delegates-nnapi = { module = "org.tensorflow:tensorflow-lite-delegates-nnapi", version.ref = "tensorflowLiteDelegatesNnapi" }
+tensorflow-lite-gpu = { module = "org.tensorflow:tensorflow-lite-gpu", version.ref = "tensorflowLiteGpu" }
+tensorflow-lite-metadata = { module = "org.tensorflow:tensorflow-lite-metadata", version.ref = "tensorflowLiteMetadata" }
+tensorflow-lite-support-v040 = { module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflowLiteSupportVersion" }
+tensorflow-lite-support-v043 = { module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflowTensorflowLiteSupportVersion" }
+tensorflow-lite-support-v2100 = { module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflowTensorflowLiteSupport" }
+tensorflow-lite-task-vision = { module = "org.tensorflow:tensorflow-lite-task-vision", version.ref = "tensorflowLiteTaskVision" }
+tensorflow-lite-v2100 = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLiteVersion" }
+tensorflow-lite-v2140 = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowTensorflowLite" }
+ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+vision-common = { group = "com.google.mlkit", name = "vision-common", version.ref = "visionCommon" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
