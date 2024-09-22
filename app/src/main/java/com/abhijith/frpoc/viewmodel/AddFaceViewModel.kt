@@ -3,6 +3,7 @@ package com.abhijith.frpoc.viewmodel
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abhijith.frpoc.helper.FaceNet
@@ -19,6 +20,8 @@ class AddFaceViewModel(
     val croppedFaceBitmap = mutableStateOf<Bitmap?>(null)
     val faceEmbedding = mutableStateOf<FloatArray?>(null)
     val errorMessage = mutableStateOf<String?>(null)
+
+
 
     fun processImage(uri: Uri) {
         viewModelScope.launch {

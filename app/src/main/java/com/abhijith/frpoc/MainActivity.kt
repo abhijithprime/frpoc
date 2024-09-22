@@ -22,8 +22,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.abhijith.frpoc.database.ObjectBoxStore
 import com.abhijith.frpoc.ui.AddFaceScreen
+import com.abhijith.frpoc.ui.AddFaceScreen2
+import com.abhijith.frpoc.ui.CameraScreen
 import com.abhijith.frpoc.ui.DetectScreen
 import com.abhijith.frpoc.ui.FaceListScreen
+import com.abhijith.frpoc.ui.RegisterScreen
 import com.abhijith.frpoc.ui.theme.FRPOCTheme
 import com.abhijith.frpoc.viewmodel.AddFaceScreenViewModel
 
@@ -33,29 +36,19 @@ class MainActivity : ComponentActivity() {
         ObjectBoxStore.init(this)
         val viewModel = AddFaceScreenViewModel(context = applicationContext)
         setContent {
-            FRPOCTheme {
-                val navController = rememberNavController()
-                NavigationComponent(applicationContext, navController, viewModel)
-            }
+            NavigationSetup(context = applicationContext, viewModel)
         }
     }
 }
 
 @Composable
-fun NavigationComponent(
-    context: Context,
-    navController: NavHostController,
-    viewModel: AddFaceScreenViewModel
-) {
-    NavHost(navController, startDestination = "home") {
-        composable("home") { HomeScreen(navController) }
-        composable("register") { AddFaceScreen(viewModel) { navController.navigateUp() } }
-        composable("recognize") { DetectScreen(context) { navController.navigateUp() } }
-        composable("faceList") {
-            FaceListScreen(context = context, onNavigateBack = { navController.navigateUp() }) {
-                navController.navigate("faceList")
-            }
-        }
+fun NavigationSetup(context: Context, viewModel: AddFaceScreenViewModel) {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = "addFaceScreen") {
+        composable("addFaceScreen") { AddFaceScreen2(navController) }
+        composable("cameraScreen") { CameraScreen( navController, viewModel = AddFaceScreenViewModel(context)) }
+        composable("registerScreen") { RegisterScreen(viewModel) { navController.navigateUp() } }
     }
 }
 

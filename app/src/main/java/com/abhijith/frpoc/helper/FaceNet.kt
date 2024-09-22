@@ -46,7 +46,7 @@ class FaceNet(context: Context, useGpu: Boolean = true, useXNNPack: Boolean = tr
                 numThreads = 4
 //            }
             this.useXNNPACK = useXNNPack
-            this.useNNAPI = true
+            this.useNNAPI = false
         }
 
         // Load the FaceNet model

@@ -1,3 +1,4 @@
+import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
 import java.net.URI
 
 plugins {
@@ -79,6 +80,8 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.vision.common)
+    implementation("androidx.compose.runtime:runtime-livedata:1.7.2")
+
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -124,6 +127,7 @@ dependencies {
 
 
     implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.34.0")
 
 
 

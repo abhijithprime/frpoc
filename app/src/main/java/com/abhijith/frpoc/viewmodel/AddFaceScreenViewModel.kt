@@ -4,7 +4,11 @@ import android.content.Context
 import android.net.Uri
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.abhijith.frpoc.components.setProgressDialogText
 import com.abhijith.frpoc.database.ImagesVectorDB
@@ -29,6 +33,29 @@ class AddFaceScreenViewModel(context: Context) : ViewModel() {
     private val faceNet: FaceNet = FaceNet(context)
     private val mediaPipeFaceDetector: MediaPipeFaceDetector = MediaPipeFaceDetector(context)
 
+    private val _imageUri = MutableLiveData<String>()
+    val imageUri: LiveData<String> = _imageUri
+
+    // Mutable list to store photo URIs
+    val photoUris = mutableStateListOf<Uri>()
+
+    fun setImageUri(uri: String) {
+        // Use postValue if updating LiveData from a background thread
+        _imageUri.postValue(uri)
+    }
+
+
+
+    // Function to add new URIs to the list
+    fun addPhotoUri(uri: Uri) {
+        photoUris.add(uri)
+    }
+
+    // Function to add multiple URIs at once (if needed)
+    fun addPhotoUris(uris: List<Uri>) {
+        photoUris.addAll(uris)
+    }
+
     // Pass the dependencies into the use cases
     private val personUseCase: PersonUseCase = PersonUseCase(personDB)
     private val imageVectorUseCase: ImageVectorUseCase = ImageVectorUseCase(
@@ -39,7 +66,10 @@ class AddFaceScreenViewModel(context: Context) : ViewModel() {
 
     // Mutable states for the UI
     val personNameState: MutableState<String> = mutableStateOf("")
+    val personEmailState: MutableState<String> = mutableStateOf("")
+    val personPhoneState: MutableState<String> = mutableStateOf("")
     val selectedImageURIs: MutableState<List<Uri>> = mutableStateOf(emptyList())
+
 
     val isProcessingImages: MutableState<Boolean> = mutableStateOf(false)
     val numImagesProcessed: MutableState<Int> = mutableIntStateOf(0)
