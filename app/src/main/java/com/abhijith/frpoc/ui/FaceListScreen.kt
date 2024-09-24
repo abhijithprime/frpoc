@@ -26,6 +26,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -45,6 +47,7 @@ import com.abhijith.frpoc.helper.ImageVectorUseCase
 import com.abhijith.frpoc.helper.MediaPipeFaceDetector
 import com.abhijith.frpoc.helper.PersonUseCase
 import com.abhijith.frpoc.ui.theme.FRPOCTheme
+import com.abhijith.frpoc.ui.theme.claret
 import com.abhijith.frpoc.viewmodel.FaceListScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,6 +61,9 @@ fun FaceListScreen(context: Context, onNavigateBack: (() -> Unit), onAddFaceClic
                     title = {
                         Text(text = "Face List", style = MaterialTheme.typography.headlineSmall)
                     },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = claret
+                    ),
                     navigationIcon = {
                         IconButton(onClick = onNavigateBack) {
                             Icon(

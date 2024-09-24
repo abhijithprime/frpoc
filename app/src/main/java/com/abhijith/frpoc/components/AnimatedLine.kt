@@ -49,11 +49,11 @@ fun AnimatedLine(
     )
 
     Box(modifier = Modifier.size(boxSize)) {
-        Image(
-            painter = painterResource(id = R.drawable.top_left),
-            contentDescription = "start scanning",
-            modifier = Modifier.size(boxSize)
-        )
+//        Image(
+//            painter = painterResource(id = R.drawable.top_left),
+//            contentDescription = "start scanning",
+//            modifier = Modifier.size(boxSize)
+//        )
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally

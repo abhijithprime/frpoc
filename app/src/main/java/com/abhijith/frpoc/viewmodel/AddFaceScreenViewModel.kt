@@ -6,7 +6,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,10 +13,10 @@ import com.abhijith.frpoc.components.setProgressDialogText
 import com.abhijith.frpoc.database.ImagesVectorDB
 import com.abhijith.frpoc.database.PersonDB
 import com.abhijith.frpoc.helper.AppException
-import com.abhijith.frpoc.helper.ImageVectorUseCase
-import com.abhijith.frpoc.helper.PersonUseCase
-import com.abhijith.frpoc.helper.MediaPipeFaceDetector
 import com.abhijith.frpoc.helper.FaceNet
+import com.abhijith.frpoc.helper.ImageVectorUseCase
+import com.abhijith.frpoc.helper.MediaPipeFaceDetector
+import com.abhijith.frpoc.helper.PersonUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,9 +25,11 @@ class AddFaceScreenViewModel(context: Context) : ViewModel() {
 
     // Initialize the dependencies first
     private val personDB: PersonDB
+
     init {
         personDB = PersonDB()
     }
+
     private val imagesVectorDB: ImagesVectorDB = ImagesVectorDB()
     private val faceNet: FaceNet = FaceNet(context)
     private val mediaPipeFaceDetector: MediaPipeFaceDetector = MediaPipeFaceDetector(context)
@@ -43,7 +44,6 @@ class AddFaceScreenViewModel(context: Context) : ViewModel() {
         // Use postValue if updating LiveData from a background thread
         _imageUri.postValue(uri)
     }
-
 
 
     // Function to add new URIs to the list
@@ -104,4 +104,31 @@ class AddFaceScreenViewModel(context: Context) : ViewModel() {
             isProcessingImages.value = false
         }
     }
+
+    /**
+     * Retrieve the cached URIs when needed.
+     */
+    fun getCachedUris(context: Context): Set<String>? {
+        val sharedPreferences = context.getSharedPreferences("photo_cache", Context.MODE_PRIVATE)
+        return sharedPreferences.getStringSet("photoUris", emptySet())
+    }
+
+    fun clearCachedUris(context: Context) {
+        val sharedPreferences = context.getSharedPreferences("photo_cache", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("photoUris") // Remove the cached URIs
+        editor.apply() // Apply the changes
+    }
+
+    fun loadCachedUris(context: Context) {
+        val sharedPreferences = context.getSharedPreferences("photo_cache", Context.MODE_PRIVATE)
+        val cachedUrisSet = sharedPreferences.getStringSet("photoUris", emptySet())
+
+        // Convert cached string URIs to a List<Uri>
+        val uriList = cachedUrisSet?.map { Uri.parse(it) } ?: emptyList()
+
+        // Update the MutableState with the retrieved URIs
+        selectedImageURIs.value = uriList
+    }
+
 }

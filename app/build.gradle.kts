@@ -101,6 +101,8 @@ dependencies {
     implementation(libs.tensorflow.lite.support.v043)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.tensorflow.lite.task.vision)
+    implementation(libs.androidx.material.icons.extended)
+
 
 //    implementation (libs.tasks.vision)
 //    implementation (libs.solutions.facemesh)

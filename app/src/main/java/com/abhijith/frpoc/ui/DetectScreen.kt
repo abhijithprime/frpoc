@@ -20,8 +20,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Cameraswitch
 import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -41,17 +42,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.app.ActivityCompat
-import com.abhijith.frpoc.R
+import androidx.navigation.NavController
 import com.abhijith.frpoc.components.AppAlertDialog
 import com.abhijith.frpoc.components.DelayedVisibility
 import com.abhijith.frpoc.components.FaceDetectionOverlay
 import com.abhijith.frpoc.components.createAlertDialog
 import com.abhijith.frpoc.ui.theme.FRPOCTheme
+import com.abhijith.frpoc.ui.theme.claret
 import com.abhijith.frpoc.viewmodel.DetectScreenViewModel
 
 private val cameraPermissionStatus = mutableStateOf(false)
@@ -60,18 +61,32 @@ private lateinit var cameraPermissionLauncher: ManagedActivityResultLauncher<Str
 
 @kotlin.OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetectScreen(context: Context, onOpenFaceListClick: (() -> Unit)) {
+fun DetectScreen(
+    context: Context,
+    navController: NavController,
+    onOpenFaceListClick: (() -> Unit)
+) {
     FRPOCTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
                 TopAppBar(
-                    colors = TopAppBarDefaults.topAppBarColors(),
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = claret
+                    ),
                     title = {
                         Text(
-                            text = stringResource(id = R.string.app_name),
+                            text = "Face Recognition",
                             style = MaterialTheme.typography.headlineSmall
                         )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                                contentDescription = "Navigate Back"
+                            )
+                        }
                     },
                     actions = {
                         IconButton(onClick = onOpenFaceListClick) {
@@ -90,7 +105,7 @@ fun DetectScreen(context: Context, onOpenFaceListClick: (() -> Unit)) {
                             }
                         ) {
                             Icon(
-                                imageVector = Icons.Default.Refresh,
+                                imageVector = Icons.Default.Cameraswitch,
                                 contentDescription = "Switch Camera"
                             )
                         }
@@ -204,8 +219,7 @@ private fun camaraPermissionDialog() {
         "CLOSE",
         onPositiveButtonClick = { cameraPermissionLauncher.launch(Manifest.permission.CAMERA) },
         onNegativeButtonClick = {
-            // TODO: Handle deny camera permission action
-            //       close the app
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
     )
 }

@@ -1,5 +1,7 @@
 package com.abhijith.frpoc.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,6 +17,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,8 +30,14 @@ import androidx.navigation.NavHostController
 import com.abhijith.frpoc.R
 import com.abhijith.frpoc.ui.theme.FRPOCTheme
 import com.abhijith.frpoc.ui.theme.claret
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.MultiplePermissionsState
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import kotlinx.coroutines.delay
 
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun AddFaceScreen2(navController: NavHostController) {
     FRPOCTheme {
@@ -36,7 +45,36 @@ fun AddFaceScreen2(navController: NavHostController) {
             modifier = Modifier.fillMaxSize(),
         ) { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
+                val permissionsState = rememberMultiplePermissionsState(
+                    permissions = listOf(
+                        android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        android.Manifest.permission.POST_NOTIFICATIONS
+                    )
+                )
+
+                LaunchedEffect(Unit) {
+                    // Request permissions on first render
+                    permissionsState.launchMultiplePermissionRequest()
+                }
+
+                HandlePermissionRequests(permissionsState)
+
                 ScreenUI(navController)
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun HandlePermissionRequests(permissionsState: MultiplePermissionsState) {
+    if (!permissionsState.allPermissionsGranted) {
+        LaunchedEffect(Unit) {
+            // Keep requesting until permissions are granted
+            while (!permissionsState.allPermissionsGranted) {
+                delay(500)  // Delay between permission requests
+                permissionsState.launchMultiplePermissionRequest()
             }
         }
     }
@@ -96,6 +134,24 @@ private fun ScreenUI(navController: NavHostController) {
             ) {
                 Text(
                     text = "Register",
+                    color = Color.White,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                )
+            }
+
+            Button(
+                onClick = {
+                    navController.navigate("recognizeScreen")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = claret),
+                modifier = Modifier
+                    .padding(top = 32.dp)
+                    .height(48.dp)
+                    .fillMaxWidth(0.5f)
+            ) {
+                Text(
+                    text = "Recognize",
                     color = Color.White,
                     fontWeight = FontWeight.Normal,
                     fontSize = 16.sp
