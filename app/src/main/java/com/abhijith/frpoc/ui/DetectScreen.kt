@@ -11,10 +11,12 @@ import androidx.annotation.OptIn
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -113,13 +115,13 @@ fun DetectScreen(
                 )
             }
         ) { innerPadding ->
-            Column(modifier = Modifier.padding(innerPadding)) { ScreenUI(context) }
+            Column(modifier = Modifier.padding(innerPadding)) { ScreenUI(context, navController) }
         }
     }
 }
 
 @Composable
-private fun ScreenUI(context: Context) {
+private fun ScreenUI(context: Context,  navController: NavController,) {
     // Create or obtain your ViewModel instance directly
     val viewModel = remember { DetectScreenViewModel(context) }
 
@@ -150,14 +152,16 @@ private fun ScreenUI(context: Context) {
         }
         DelayedVisibility(viewModel.getNumPeople() == 0L) {
             Text(
-                text = "No images in database",
+                text = "No images in database. Please click here to register.",
                 color = Color.White,
                 modifier =
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 8.dp)
-                    .background(Color.Blue, RoundedCornerShape(16.dp))
-                    .padding(8.dp),
+                    .background(claret, RoundedCornerShape(16.dp))
+                    .padding(8.dp).clickable {
+                        navController.navigate("cameraScreen")
+                    },
                 textAlign = TextAlign.Center
             )
         }

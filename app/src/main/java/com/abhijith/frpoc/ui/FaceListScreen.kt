@@ -26,7 +26,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -75,7 +74,7 @@ fun FaceListScreen(context: Context, onNavigateBack: (() -> Unit), onAddFaceClic
                 )
             },
             floatingActionButton = {
-                FloatingActionButton(onClick = onAddFaceClick) {
+                FloatingActionButton(onClick = onAddFaceClick, containerColor = claret) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = "Add a new face")
                 }
             }

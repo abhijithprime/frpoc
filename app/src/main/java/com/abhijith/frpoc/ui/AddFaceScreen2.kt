@@ -24,9 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.abhijith.frpoc.R
 import com.abhijith.frpoc.ui.theme.FRPOCTheme
 import com.abhijith.frpoc.ui.theme.claret
@@ -140,26 +142,38 @@ private fun ScreenUI(navController: NavHostController) {
                 )
             }
 
-            Button(
-                onClick = {
-                    navController.navigate("recognizeScreen")
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = claret),
-                modifier = Modifier
-                    .padding(top = 32.dp)
-                    .height(48.dp)
-                    .fillMaxWidth(0.5f)
-            ) {
-                Text(
-                    text = "Recognize",
-                    color = Color.White,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 16.sp
-                )
-            }
+//            Button(
+//                onClick = {
+//                    navController.navigate("recognizeScreen")
+//                },
+//                colors = ButtonDefaults.buttonColors(containerColor = claret),
+//                modifier = Modifier
+//                    .padding(top = 32.dp)
+//                    .height(48.dp)
+//                    .fillMaxWidth(0.5f)
+//            ) {
+//                Text(
+//                    text = "Recognize",
+//                    color = Color.White,
+//                    fontWeight = FontWeight.Normal,
+//                    fontSize = 16.sp
+//                )
+//            }
         }
+
     }
+
 }
+
+//Create a preview for the AddFaceScreen2
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
+@Preview(showBackground = true)
+@Composable
+fun AddFaceScreen2Preview() {
+    val navController = rememberNavController()
+    AddFaceScreen2(navController)
+}
+
 
 
 
