@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -98,67 +100,78 @@ private fun ScreenUI(navController: NavHostController) {
         )
 
         Column(
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .padding(bottom = 100.dp)
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = "Face Recognition",
-                color = claret,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "Attendance",
-                color = claret,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 24.dp)
-            )
-            Image(
-                painter = painterResource(id = R.drawable.face_register),
-                contentDescription = "Face Recognition",
+            verticalArrangement = Arrangement.SpaceBetween
+        )
+        {
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .padding(24.dp)
-                    .size(190.dp)
-                    .background(color = Color.White, shape = CircleShape)
-            )
-            Button(
-                onClick = {
-                    navController.navigate("cameraScreen")
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = claret),
-                modifier = Modifier
-                    .padding(top = 32.dp)
-                    .height(48.dp)
-                    .fillMaxWidth(0.5f)
+                    .padding(top = 100.dp)
+                    .fillMaxWidth()
             ) {
                 Text(
-                    text = "Register",
-                    color = Color.White,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 16.sp
+                    text = "AFace",
+                    color = claret,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
                 )
+//                Text(
+//                    text = "Attendance",
+//                    color = claret,
+//                    fontSize = 24.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    modifier = Modifier.padding(bottom = 24.dp)
+//                )
+                Image(
+                    painter = painterResource(id = R.drawable.face_register),
+                    contentDescription = "Face Recognition",
+                    modifier = Modifier
+                        .padding(24.dp)
+                        .size(190.dp)
+                        .background(color = Color.White, shape = CircleShape)
+                )
+                Button(
+                    onClick = {
+                        navController.navigate("cameraScreen")
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = claret),
+                    modifier = Modifier
+                        .padding(top = 32.dp)
+                        .height(48.dp)
+                        .fillMaxWidth(0.5f)
+                ) {
+                    Text(
+                        text = "Register",
+                        color = Color.White,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 16.sp
+                    )
+                }
             }
 
-//            Button(
-//                onClick = {
-//                    navController.navigate("recognizeScreen")
-//                },
-//                colors = ButtonDefaults.buttonColors(containerColor = claret),
-//                modifier = Modifier
-//                    .padding(top = 32.dp)
-//                    .height(48.dp)
-//                    .fillMaxWidth(0.5f)
-//            ) {
-//                Text(
-//                    text = "Recognize",
-//                    color = Color.White,
-//                    fontWeight = FontWeight.Normal,
-//                    fontSize = 16.sp
-//                )
-//            }
+//            Spacer(modifier = Modifier.height(100.dp))
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+
+                Text(
+                    text = "Powered By",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color.Black
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.prime_logo),
+                    contentDescription = "prime logo",
+                    modifier = Modifier
+                        .fillMaxSize(0.35f)
+                        .padding(top = 10.dp)
+                )
+            }
         }
 
     }
