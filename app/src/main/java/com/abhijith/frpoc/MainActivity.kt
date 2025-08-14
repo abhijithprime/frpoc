@@ -23,6 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.abhijith.frpoc.database.ObjectBoxStore
+import com.abhijith.frpoc.ui.AddFaceScreen
 import com.abhijith.frpoc.ui.AddFaceScreen2
 import com.abhijith.frpoc.ui.CameraScreen
 import com.abhijith.frpoc.ui.DetectScreen
@@ -51,6 +52,10 @@ fun NavigationSetup(context: Context, viewModel: AddFaceScreenViewModel) {
 
     NavHost(navController = navController, startDestination = "addFaceScreen") {
         composable("addFaceScreen") { AddFaceScreen2(navController) }
+//        composable("addFaceScreen") { AddFaceScreen(
+//            viewModel,
+//            onNavigateBack = {navController.popBackStack()}
+//        ) }
         composable("cameraScreen") {
             CameraScreen(
                 navController,

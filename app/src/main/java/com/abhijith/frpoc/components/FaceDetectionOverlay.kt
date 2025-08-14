@@ -197,7 +197,7 @@ class FaceDetectionOverlay(
 
         private val boxPaint =
             Paint().apply {
-                color = Color.parseColor("#4D90caf9")
+                color = Color.WHITE
                 style = Paint.Style.STROKE
             }
         private val textPaint =

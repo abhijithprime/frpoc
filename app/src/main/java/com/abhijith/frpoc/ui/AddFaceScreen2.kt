@@ -142,23 +142,23 @@ private fun ScreenUI(navController: NavHostController) {
                 )
             }
 
-//            Button(
-//                onClick = {
-//                    navController.navigate("recognizeScreen")
-//                },
-//                colors = ButtonDefaults.buttonColors(containerColor = claret),
-//                modifier = Modifier
-//                    .padding(top = 32.dp)
-//                    .height(48.dp)
-//                    .fillMaxWidth(0.5f)
-//            ) {
-//                Text(
-//                    text = "Recognize",
-//                    color = Color.White,
-//                    fontWeight = FontWeight.Normal,
-//                    fontSize = 16.sp
-//                )
-//            }
+            Button(
+                onClick = {
+                    navController.navigate("recognizeScreen")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = claret),
+                modifier = Modifier
+                    .padding(top = 32.dp)
+                    .height(48.dp)
+                    .fillMaxWidth(0.5f)
+            ) {
+                Text(
+                    text = "Recognize",
+                    color = Color.White,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                )
+            }
         }
 
     }
