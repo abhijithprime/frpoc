@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -104,13 +106,13 @@ private fun ScreenUI(navController: NavHostController) {
                 .fillMaxWidth()
         ) {
             Text(
-                text = "Face Recognition",
+                text = "Workforce Allocation",
                 color = claret,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "Attendance",
+                text = "Monitoring Based FR",
                 color = claret,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
@@ -159,6 +161,10 @@ private fun ScreenUI(navController: NavHostController) {
                     fontSize = 16.sp
                 )
             }
+            Spacer(modifier = Modifier.height(30.dp))
+            Text("Location : Coimbatore, Tamil Nadu, India", style = androidx.compose.ui.text.TextStyle(color = Color.Black, fontSize = 16.sp))
+            Spacer(modifier = Modifier.height(30.dp))
+            Text("Date : 19/08/2025", style = TextStyle(color = Color.Black, fontSize = 16.sp))
         }
 
     }
