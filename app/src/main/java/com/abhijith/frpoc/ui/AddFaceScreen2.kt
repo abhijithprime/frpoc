@@ -86,6 +86,9 @@ fun HandlePermissionRequests(permissionsState: MultiplePermissionsState) {
 
 @Composable
 private fun ScreenUI(navController: NavHostController) {
+    val currentDate = java.time.LocalDate.now()
+    val formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val formattedDate = currentDate.format(formatter)
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -164,7 +167,7 @@ private fun ScreenUI(navController: NavHostController) {
             Spacer(modifier = Modifier.height(30.dp))
             Text("Location : Coimbatore, Tamil Nadu, India", style = androidx.compose.ui.text.TextStyle(color = Color.Black, fontSize = 16.sp))
             Spacer(modifier = Modifier.height(30.dp))
-            Text("Date : 19/08/2025", style = TextStyle(color = Color.Black, fontSize = 16.sp))
+            Text("Date : $formattedDate", style = TextStyle(color = Color.Black, fontSize = 16.sp))
         }
 
     }
